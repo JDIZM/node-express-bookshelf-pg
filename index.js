@@ -1,10 +1,23 @@
-const bookshelf = require('./services/bookshelf')
-// console.log('bookshelf', bookshelf)
+const express = require('express');
+const app = express();
+const port = 1337
 
-// models
-const Post = require('./models/Post.model')
-const User = require('./models/User.model')
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.use(express.json());
 
-// fetch all users using the model 
-// when to use controller?
-User.fetchAll().then(user => console.log(user.models))
+const routes = require('./routes/routes');
+const router = new express.Router();
+
+// use new router with version path and route handlers
+app.use('/v1', router);
+
+// call the routes, pass router object
+routes(router);
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
