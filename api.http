@@ -16,17 +16,19 @@ POST http://localhost:1337/v1/users/create HTTP/1.1
 content-type: application/json
 
 {
-    "name": "james"
+    "Name": "james",
+    "Age": 36
 }
 
 
 ###
 # @name updateUser
-PATCH http://localhost:1337/v1/users/1 HTTP/1.1
+PATCH http://localhost:1337/v1/users/9 HTTP/1.1
 content-type: application/json
 
 {
-    "name": "james"
+    "Name": "john",
+    "Age": 40
 }
 
 ###

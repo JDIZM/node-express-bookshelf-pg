@@ -3,7 +3,6 @@ const bookshelf = require('../services/bookshelf')
 const User = require('../models/User.model')
 
 const fetchUser = async function(req, res) {
-    console.log('fetchUser', req.params)
     User.where({ Id: req.params.id })
         .fetch().then(user =>{
             res.json(user)
@@ -12,7 +11,6 @@ const fetchUser = async function(req, res) {
 }
 
 const fetchAllUsers = async function(req, res) {
-    console.log('fetchAllUsers')
     User.fetchAll()
         .then(user => {
             // close connection; breaks the app
@@ -23,13 +21,30 @@ const fetchAllUsers = async function(req, res) {
 }
 
 const createUser = async function(req, res) {
-    console.log('createUser', req.body)
-    return res.sendStatus(200)
+    try {
+        new User(req.body)
+            .save()
+            .then(model => res.json(model))
+    } catch(err) {
+        return res.sendStatus(500)
+    }
 }
 
 const updateUser = async function(req, res) {
-    console.log('updateUser', req.body)
-    return res.sendStatus(200)
+    new User()
+        .where({ Id: req.params.id })
+        .save(req.body, {
+            method: 'update',
+            patch: true
+        })
+        .then(model => {
+            console.log('updateUser', req.params.id, req.body)
+            res.json(model)
+        })
+        .catch(err => {
+            console.error(`updateUser error: 500 ${err.message}`)
+            return res.status(500).json(err)
+        })
 }
 
 
