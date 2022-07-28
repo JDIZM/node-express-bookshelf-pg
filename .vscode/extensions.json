@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+      "PKief.material-icon-theme",
+      "Gruntfuggly.todo-tree",
+      "eamodio.gitlens",
+      "aaron-bond.better-comments",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "formulahendry.auto-rename-tag"
+    ]
+}
