@@ -9,6 +9,7 @@ const {
 } = require("../controllers/User.controller");
 
 const {
+  createArticle,
   fetchArticle,
   fetchAllArticles,
 } = require("../controllers/Article.controller");
@@ -31,4 +32,5 @@ module.exports = function (router) {
   // articles
   router.get("/articles/:id", fetchArticle);
   router.get("/articles", fetchAllArticles);
+  router.post("/articles/create", createArticle);
 };

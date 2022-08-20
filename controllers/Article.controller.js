@@ -20,4 +20,12 @@ const fetchAllArticles = async function (req, res) {
     .catch((err) => res.status(500).json(err));
 };
 
-module.exports = { fetchArticle, fetchAllArticles };
+const createArticle = async function (req, res) {
+  try {
+    new Article(req.body).save().then((model) => res.status(201).json(model));
+  } catch (err) {
+    return res.sendStatus(500).json(err);
+  }
+};
+
+module.exports = { fetchArticle, fetchAllArticles, createArticle };
