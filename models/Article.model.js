@@ -8,7 +8,7 @@ const bookshelf = require("../services/bookshelf");
 // });
 
 const Article = bookshelf.model("Article", {
-  tableName: "Article",
+  tableName: "article",
   hasTimestamps: true,
 });
 
