@@ -59,15 +59,16 @@ you will need to create new tables with a migration or with a custom script
 
 ### migrations with knex
 
-install knex globally `npm install -g knex`
+to use migrations install knex globally `npm install -g knex`
 
 - https://www.jsparling.com/set-up-bookshelf-js-for-node-js/
 - https://knexjs.org/guide/schema-builder.html#datetime
 
-1. create a knexfile
-2. create a migration `knex migrate:make create_table`
-3. add logic to the migration file to create required tables and data
-4. run the migration `knex migrate:latest` to update the db
+You can create and run migrations with the knex cli.
+
+1. create a migration `knex migrate:make create_table`
+2. add logic to the migration file to create required tables
+3. run the migration `knex migrate:latest` to update the db with new tables
 
 ### seeds
 
