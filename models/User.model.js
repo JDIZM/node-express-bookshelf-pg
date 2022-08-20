@@ -1,7 +1,7 @@
-const bookshelf = require('../services/bookshelf')
+const bookshelf = require("../services/bookshelf");
 
-const User = bookshelf.model('User', {
-  tableName: 'User'
-})
+const User = bookshelf.model("User", {
+  tableName: "User",
+});
 
 module.exports = User;
