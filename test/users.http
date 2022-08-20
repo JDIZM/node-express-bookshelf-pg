@@ -16,21 +16,23 @@ POST http://localhost:1337/v1/users/create HTTP/1.1
 content-type: application/json
 
 {
-    "Name": "james",
-    "Age": 36
+    "email": "hello@jamesdonnelly.dev",
+    "first_name": "james",
+    "last_name": "D"
 }
 
 
 ###
 # @name updateUser
-PATCH http://localhost:1337/v1/users/9 HTTP/1.1
+PATCH http://localhost:1337/v1/users/2 HTTP/1.1
 content-type: application/json
 
 {
-    "Name": "john",
-    "Age": 40
+    "email": "hello@jamesdonnelly.dev",
+    "first_name": "james",
+    "last_name": "Donnelly"
 }
 
 ###
 # @name removeUser
-DELETE http://localhost:1337/v1/users/1 HTTP/1.1
+DELETE http://localhost:1337/v1/users/2 HTTP/1.1
