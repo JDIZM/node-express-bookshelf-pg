@@ -62,6 +62,7 @@ you will need to create new tables with a migration or with a custom script
 install knex globally `npm install -g knex`
 
 - https://www.jsparling.com/set-up-bookshelf-js-for-node-js/
+- https://knexjs.org/guide/schema-builder.html#datetime
 
 1. create a knexfile
 2. create a migration `knex migrate:make create_table`
