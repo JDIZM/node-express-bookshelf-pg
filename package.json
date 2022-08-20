@@ -1,17 +1,23 @@
 {
   "name": "bookshelf-postgres",
   "version": "1.0.0",
-  "description": "",
+  "description": "A demo API project using bookshelf, knex and postgres",
   "main": "index.js",
+  "author": "JDIZM",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "dev": "docker compose up -d && node index.js",
+    "stop": "docker compose down",
+    "db:drop": "docker compose start db && docker compose exec db sh -c 'export PGPASSWORD=${POSTGRES_PASSWORD}; dropdb --if-exists ${POSTGRES_DB} -U ${POSTGRES_USER}'",
+    "db:create": "docker compose start db && docker compose exec db sh -c 'export PGPASSWORD=${POSTGRES_PASSWORD}; createdb -U ${POSTGRES_USER} ${POSTGRES_DB}'",
+    "db:import": "docker exec -i postgres-db /usr/bin/pg_restore -U postgres -d test < backup.sql",
+    "db:copy": "docker cp backup.sql postgres-db:/home/backup.sql",
+    "db:backup": "docker exec postgres-db /usr/bin/pg_dump -U postgres test -Fc --no-owner > backup.sql"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "bookshelf": "^1.2.0",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "knex": "^2.1.0",
     "pg": "^8.7.3"
