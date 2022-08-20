@@ -3,7 +3,7 @@ const bookshelf = require("../services/bookshelf");
 const User = require("../models/User.model");
 
 const fetchUser = async function (req, res) {
-  User.where({ Id: req.params.id })
+  User.where({ id: req.params.id })
     .fetch()
     .then((user) => {
       res.json(user);
@@ -31,7 +31,7 @@ const createUser = async function (req, res) {
 
 const updateUser = async function (req, res) {
   new User()
-    .where({ Id: req.params.id })
+    .where({ id: req.params.id })
     .save(req.body, {
       method: "update",
       patch: true,
