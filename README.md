@@ -68,3 +68,9 @@ install knex globally `npm install -g knex`
 2. create a migration `knex migrate:make create_table`
 3. add logic to the migration file to create required tables and data
 4. run the migration `knex migrate:latest` to update the db
+
+### seeds
+
+you can see the database with data; the migrations will only create the required tables
+
+To run a seed use `npm run seed:run` to run the seed file
