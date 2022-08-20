@@ -12,7 +12,12 @@ this uses pnpm for package management
 
 https://pnpm.io/installation
 
-then run `pnpm install` to install the project dependencies
+1. install the project dependencies `pnpm install`
+2. create a `.env` file with the contents of `.env.example`
+3. `knex migrate:latest`
+4. `knex seed:run`
+5. `npm run dev`
+6. test the api endpoints work with [VSCode REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
 ### importing the db
 
