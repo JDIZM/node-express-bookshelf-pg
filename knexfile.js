@@ -15,7 +15,7 @@ module.exports = {
     },
     connection: {
       host: process.env.POSTGRES_HOST,
-      database: "test",
+      database: process.env.POSTGRES_DB,
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
     },
@@ -27,7 +27,7 @@ module.exports = {
     client: "pg",
     connection: {
       host: process.env.POSTGRES_HOST,
-      database: "test",
+      database: process.env.POSTGRES_DB,
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
     },
