@@ -4,6 +4,7 @@ const {
   createUser,
   fetchUser,
   fetchAllUsers,
+  fetchArticlesByUser,
   updateUser,
   removeUser,
 } = require("../controllers/User.controller");
@@ -11,6 +12,7 @@ const {
 const {
   createArticle,
   fetchArticle,
+  fetchArticleUser,
   fetchAllArticles,
 } = require("../controllers/Article.controller");
 
@@ -29,8 +31,10 @@ module.exports = function (router) {
   router.post("/users/create", createUser);
   router.patch("/users/:id", updateUser);
   router.delete("/users/:id", removeUser);
+  router.get("/users/:id/articles", fetchArticlesByUser);
   // articles
   router.get("/articles/:id", fetchArticle);
   router.get("/articles", fetchAllArticles);
   router.post("/articles/create", createArticle);
+  router.get("/articles/:id/user", fetchArticleUser);
 };
