@@ -10,6 +10,11 @@ const bookshelf = require("../services/bookshelf");
 const Article = bookshelf.model("Article", {
   tableName: "article",
   hasTimestamps: true,
+  // https://bookshelfjs.org/api.html#Model-instance-belongsTo
+  // one-to-one relationship with user
+  user() {
+    return this.belongsTo("User", "user_email", "email");
+  },
 });
 
 module.exports = Article;
