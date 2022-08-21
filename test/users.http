@@ -11,6 +11,10 @@ GET http://localhost:1337/v1/users/1 HTTP/1.1
 GET http://localhost:1337/v1/users/ HTTP/1.1
 
 ###
+# @name fetchArticlesByUser
+GET http://localhost:1337/v1/users/1/articles HTTP/1.1
+
+###
 # @name createUser
 POST http://localhost:1337/v1/users/create HTTP/1.1
 content-type: application/json
@@ -36,3 +40,4 @@ content-type: application/json
 ###
 # @name removeUser
 DELETE http://localhost:1337/v1/users/2 HTTP/1.1
+

@@ -21,6 +21,15 @@ const fetchAllUsers = async function (req, res) {
     .catch((err) => res.status(500).json(err));
 };
 
+const fetchArticlesByUser = async function (req, res) {
+  User.where({ id: req.params.id })
+    .fetch({ withRelated: ["articles"] })
+    .then((user) => {
+      return res.status(200).json(user.related("articles"));
+    })
+    .catch((err) => res.sendStatus(500).json(err));
+};
+
 const createUser = async function (req, res) {
   try {
     new User(req.body).save().then((model) => res.json(model));
@@ -54,6 +63,7 @@ const removeUser = async function (req, res) {
 module.exports = {
   fetchUser,
   fetchAllUsers,
+  fetchArticlesByUser,
   createUser,
   updateUser,
   removeUser,
