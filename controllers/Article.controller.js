@@ -20,6 +20,16 @@ const fetchAllArticles = async function (req, res) {
     .catch((err) => res.status(500).json(err));
 };
 
+const fetchArticleUser = async function (req, res) {
+  console.log("fetchArticleUser");
+  Article.where({ id: req.params.id })
+    .fetch({ withRelated: ["user"] })
+    .then((article) => {
+      return res.status(200).json(article.related("user"));
+    })
+    .catch((err) => res.sendStatus(500).json(err));
+};
+
 const createArticle = async function (req, res) {
   try {
     new Article(req.body).save().then((model) => res.status(201).json(model));
@@ -28,4 +38,9 @@ const createArticle = async function (req, res) {
   }
 };
 
-module.exports = { fetchArticle, fetchAllArticles, createArticle };
+module.exports = {
+  fetchArticle,
+  fetchAllArticles,
+  fetchArticleUser,
+  createArticle,
+};

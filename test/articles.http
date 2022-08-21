@@ -11,6 +11,10 @@ GET http://localhost:1337/v1/articles/1 HTTP/1.1
 GET http://localhost:1337/v1/articles/ HTTP/1.1
 
 ###
+# @name fetchArticleUser
+GET http://localhost:1337/v1/articles/1/user HTTP/1.1
+
+###
 # @name createArticle
 POST http://localhost:1337/v1/articles/create HTTP/1.1
 content-type: application/json
