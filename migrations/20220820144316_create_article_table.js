@@ -9,7 +9,7 @@ exports.up = function (knex) {
       table.integer("user_id").unique();
       table.text("title");
       table.text("body");
-      table.timestamps();
+      table.timestamps(true, true);
     }),
   ]);
 };
