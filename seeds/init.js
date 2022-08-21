@@ -16,7 +16,6 @@ exports.seed = async function (knex) {
   ]);
   await knex("article").insert([
     {
-      id: 1,
       user_email: "fred@flintstones.com",
       title: "Sample Post Title",
       body: "example body content",
