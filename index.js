@@ -1,6 +1,7 @@
-const express = require('express');
+const express = require("express");
+
 const app = express();
-const port = 1337
+const port = 1337;
 
 app.use(
   express.urlencoded({
@@ -9,15 +10,16 @@ app.use(
 );
 app.use(express.json());
 
-const routes = require('./routes/routes');
+const routes = require("./routes/routes");
+
 const router = new express.Router();
 
 // use new router with version path and route handlers
-app.use('/v1', router);
+app.use("/v1", router);
 
 // call the routes, pass router object
 routes(router);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});

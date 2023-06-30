@@ -1,69 +1,61 @@
-// methods for the User model
-const bookshelf = require("../services/bookshelf");
 const User = require("../models/User.model");
 
-const fetchUser = async function (req, res) {
-  User.where({ id: req.params.id })
-    .fetch()
-    .then((user) => {
-      res.json(user);
-    })
-    .catch((err) => res.status(500).json(err));
-};
-
-const fetchAllUsers = async function (req, res) {
-  User.fetchAll()
-    .then((user) => {
-      // close connection; breaks the app
-      // bookshelf.knex.destroy();
-      return res.json(user.models);
-    })
-    .catch((err) => res.status(500).json(err));
-};
-
-const fetchArticlesByUser = async function (req, res) {
-  User.where({ id: req.params.id })
-    .fetch({ withRelated: ["articles"] })
-    .then((user) => {
-      return res.status(200).json(user.related("articles"));
-    })
-    .catch((err) => res.sendStatus(500).json(err));
-};
-
-const createUser = async function (req, res) {
+const fetchUser = async (req, res) => {
   try {
-    new User(req.body).save().then((model) => res.json(model));
+    const user = await User.where({ id: req.params.id }).fetch();
+    return res.status(200).json(user);
   } catch (err) {
-    return res.sendStatus(500);
+    return res.status(400).json(err);
   }
 };
 
-const updateUser = async function (req, res) {
-  new User()
-    .where({ id: req.params.id })
-    .save(req.body, {
-      method: "update",
-      patch: true,
-    })
-    .then((model) => {
-      console.log("updateUser", req.params.id, req.body);
-      res.json(model);
-    })
-    .catch((err) => {
-      console.error(`updateUser error: 500 ${err.message}`);
-      return res.status(500).json(err);
-    });
+const fetchAllUsers = async (req, res) => {
+  try {
+    const users = await User.fetchAll();
+    return res.status(200).json(users.models);
+  } catch (err) {
+    return res.status(400).json(err);
+  }
 };
 
-const removeUser = async function (req, res) {
-  console.log("removeUser");
-  return res.sendStatus(200);
+const fetchArticlesByUserId = async (req, res) => {
+  try {
+    const user = await User.where({ id: req.params.id }).fetch({
+      withRelated: ["articles"],
+    });
+    return res.status(200).json(user.related("articles"));
+  } catch (err) {
+    return res.status(400).json(err);
+  }
 };
+
+const createUser = async (req, res) => {
+  try {
+    const user = await new User(req.body).save();
+    return res.status(201).json(user);
+  } catch (err) {
+    return res.status(400);
+  }
+};
+
+const updateUser = async (req, res) => {
+  try {
+    const user = await User.where({ id: req.params.id }).save(req.body, {
+      method: "update",
+      patch: true,
+    });
+    return res.status(200).json(user);
+  } catch (err) {
+    return res.status(400).json(err);
+  }
+};
+
+const removeUser = async (req, res) => res.sendStatus(200);
 
 module.exports = {
   fetchUser,
   fetchAllUsers,
-  fetchArticlesByUser,
+  fetchArticlesByUserId,
   createUser,
   updateUser,
   removeUser,

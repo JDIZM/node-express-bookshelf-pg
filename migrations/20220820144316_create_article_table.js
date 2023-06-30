@@ -4,7 +4,7 @@
  */
 exports.up = function (knex) {
   return Promise.all([
-    knex.schema.createTable("article", function (table) {
+    knex.schema.createTable("article", (table) => {
       table.increments("id").primary();
       table.text("title");
       table.text("body");

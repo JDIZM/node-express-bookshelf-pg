@@ -4,7 +4,7 @@ const {
   createUser,
   fetchUser,
   fetchAllUsers,
-  fetchArticlesByUser,
+  fetchArticlesByUserId,
   updateUser,
   removeUser,
 } = require("../controllers/User.controller");
@@ -12,7 +12,7 @@ const {
 const {
   createArticle,
   fetchArticle,
-  fetchArticleUser,
+  fetchUserByArticleId,
   fetchAllArticles,
 } = require("../controllers/Article.controller");
 
@@ -23,7 +23,7 @@ const routeController = function (req, res) {
 };
 
 // pass express router object
-module.exports = function (router) {
+module.exports = function routes (router) {
   router.get("/", routeController);
   // users
   router.get("/users/:id", fetchUser);
@@ -31,10 +31,10 @@ module.exports = function (router) {
   router.post("/users/create", createUser);
   router.patch("/users/:id", updateUser);
   router.delete("/users/:id", removeUser);
-  router.get("/users/:id/articles", fetchArticlesByUser);
+  router.get("/users/:id/articles", fetchArticlesByUserId);
   // articles
   router.get("/articles/:id", fetchArticle);
   router.get("/articles", fetchAllArticles);
   router.post("/articles/create", createArticle);
-  router.get("/articles/:id/user", fetchArticleUser);
+  router.get("/articles/:id/user", fetchUserByArticleId);
 };

@@ -11,7 +11,7 @@ GET http://localhost:1337/v1/users/1 HTTP/1.1
 GET http://localhost:1337/v1/users/ HTTP/1.1
 
 ###
-# @name fetchArticlesByUser
+# @name fetchArticlesByUserId
 GET http://localhost:1337/v1/users/1/articles HTTP/1.1
 
 ###

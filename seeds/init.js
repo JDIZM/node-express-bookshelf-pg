@@ -23,4 +23,13 @@ exports.seed = async function (knex) {
       updated_at: "2022-08-20T19:51:48Z",
     },
   ]);
+  await knex("article").insert([
+    {
+      user_email: "fred@flintstones.com",
+      title: "Another Post Title",
+      body: "example body content",
+      created_at: "2022-09-20T18:51:48Z",
+      updated_at: "2022-09-20T19:51:48Z",
+    },
+  ]);
 };

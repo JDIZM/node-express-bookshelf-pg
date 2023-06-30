@@ -6,9 +6,6 @@ console.log("knex is running in env: ", process.env.NODE_ENV);
 module.exports = {
   development: {
     client: "pg",
-    connection: {
-      database: "test",
-    },
     pool: {
       min: 2,
       max: 10,

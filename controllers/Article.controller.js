@@ -1,46 +1,46 @@
 const Article = require("../models/Article.model");
-const bookshelf = require("../services/bookshelf");
 
-const fetchArticle = async function (req, res) {
-  Article.where({ id: req.params.id })
-    .fetch()
-    .then((article) => {
-      res.status(200).json(article);
-    })
-    .catch((err) => res.status(500).json(err));
-};
-
-const fetchAllArticles = async function (req, res) {
-  Article.fetchAll()
-    .then((article) => {
-      // close connection; breaks the app
-      // bookshelf.knex.destroy();
-      return res.status(200).json(article.models);
-    })
-    .catch((err) => res.status(500).json(err));
-};
-
-const fetchArticleUser = async function (req, res) {
-  console.log("fetchArticleUser");
-  Article.where({ id: req.params.id })
-    .fetch({ withRelated: ["user"] })
-    .then((article) => {
-      return res.status(200).json(article.related("user"));
-    })
-    .catch((err) => res.sendStatus(500).json(err));
-};
-
-const createArticle = async function (req, res) {
+const fetchArticle = async (req, res) => {
   try {
-    new Article(req.body).save().then((model) => res.status(201).json(model));
+    const article = await Article.where({ id: req.params.id }).fetch();
+    return res.status(200).json(article);
   } catch (err) {
-    return res.sendStatus(500).json(err);
+    return res.status(400).json(err);
+  }
+};
+
+const fetchAllArticles = async (req, res) => {
+  try {
+    const articles = await Article.fetchAll();
+    return res.status(200).json(articles.models);
+  } catch (err) {
+    return res.status(400).json(err);
+  }
+};
+
+const fetchUserByArticleId = async (req, res) => {
+  try {
+    const article = await Article.where({ id: req.params.id }).fetch({
+      withRelated: ["user"],
+    });
+    return res.status(200).json(article.related("user"));
+  } catch (err) {
+    return res.status(400).json(err);
+  }
+};
+
+const createArticle = async (req, res) => {
+  try {
+    const article = new Article(req.body).save();
+    return res.status(201).json(article);
+  } catch (err) {
+    return res.sendStatus(400).json(err);
   }
 };
 
 module.exports = {
   fetchArticle,
   fetchAllArticles,
-  fetchArticleUser,
+  fetchUserByArticleId,
   createArticle,
 };

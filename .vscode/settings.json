@@ -6,7 +6,7 @@
     "source.fixAll.eslint": true
   },
   "eslint.validate": ["javascript", "javascriptreact"],
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "eslint.format.enable": true,
   "eslint.alwaysShowStatus": true,
   "editor.formatOnSave": true,
@@ -21,6 +21,6 @@
     "**/package-lock.json": true,
     "**/yarn.lock": true,
     "**/.cache": true,
-    "**/build": true,
-  },
+    "**/build": true
+  }
 }
