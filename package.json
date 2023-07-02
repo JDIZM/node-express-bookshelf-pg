@@ -9,7 +9,7 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "dev": "docker compose up -d && node index.js",
+    "dev": "docker compose up -d && nodemon index.js",
     "stop": "docker compose down",
     "db:drop": "docker compose start db && docker compose exec db sh -c 'export PGPASSWORD=${POSTGRES_PASSWORD}; dropdb --if-exists ${POSTGRES_DB} -U ${POSTGRES_USER}'",
     "db:create": "docker compose start db && docker compose exec db sh -c 'export PGPASSWORD=${POSTGRES_PASSWORD}; createdb -U ${POSTGRES_USER} ${POSTGRES_DB}'",
@@ -31,6 +31,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.25.2",
+    "nodemon": "^2.0.22",
     "prettier": "^2.8.8"
   }
 }
