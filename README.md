@@ -5,12 +5,29 @@
 - [knex](https://knexjs.org/guide/migrations.html)
 - postgres
 - express
+- pnpm
 
-### setup
 
-this uses pnpm for package management
+## Installation
 
-https://pnpm.io/installation
+### package manager
+
+This project uses pnpm to manage dependencies. Install pnpm with `npm install -g pnpm` and run `pnpm install` to install dependencies.
+
+see https://pnpm.io/installation for more information on pnpm.
+
+### volta
+
+This project uses volta to manage node versions. Install volta and run `volta install` to install the correct node version.
+
+To install volta run the following command in the terminal.
+
+```
+curl https://get.volta.sh | bash
+```
+
+
+## setup
 
 1. install the project dependencies `pnpm install`
 2. create a `.env` file with the contents of `.env.example`
@@ -19,7 +36,7 @@ https://pnpm.io/installation
 5. `npm run dev`
 6. test the api endpoints work with [VSCode REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
-### importing the db
+## importing the db
 
 imports a db from local `backup.sql` file
 
@@ -50,7 +67,7 @@ echo $LANG
 export LANG=en_GB.UTF-8
 ```
 
-### backing up the db
+## backing up the db
 
 to backup the db simply run `npm run db:backup` this will run the following command on the docker container
 
@@ -58,11 +75,11 @@ to backup the db simply run `npm run db:backup` this will run the following comm
 docker exec <db-container-name> /usr/bin/pg_dump -U <dbuser> <dbname> > backup.sql
 ```
 
-### adding new tables
+## adding new tables
 
 you will need to create new tables with a migration or with a custom script
 
-### migrations with knex
+## migrations with knex
 
 to use migrations install knex globally `npm install -g knex`
 
@@ -75,7 +92,7 @@ You can create and run migrations with the knex cli.
 2. add logic to the migration file to create required tables
 3. run the migration `knex migrate:latest` to update the db with new tables
 
-### seeds
+## seeds
 
 you can see the database with data; the migrations will only create the required tables
 
